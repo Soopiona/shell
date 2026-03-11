@@ -31,24 +31,45 @@ unzip -q rawdata.zip
 # 1. Create a directory named data
 mkdir data
 # 2. Move the ./rawdata directory to ./data/raw (eg. move it into ./data and rename it to raw)
-mv rawdata data/raw 
+mv rawdata/ ~/dsi/shell/02_activities/assignments/data
+cd ..
+cd data
+mv rawdata raw 
 # 3. List the contents of the ./data/raw directory
-ls data/raw
+cd raw/
+ls
 # 4. Create the directory ./data/processed, 
 #    then create the following sub-directories within it: server_logs, user_logs, and event_logs
-mkdir -p data/processed/server_logs
-mkdir -p data/processed/user_logs
-mkdir -p data/processed/event_logs
+cd ..
+mkdir processed
 # 5. Copy all server log files (files with "server" in the name AND a .log extension) from ./data/raw to ./data/processed/server_logs
-cp data/raw/*server*.log data/processed/server_logs/
+cd processed/
+mkdir server_logs
+cd raw/
+cp server*.log ~/dsi/shell/02_activities/assignments/data/processed/server_logs
+
 # 6. Repeat the above step for user logs and event logs
-cp data/raw/*user*.log data/processed/user_logs/
-cp data/raw/*event*.log data/processed/event_logs/
+cd ..
+cd processed/
+mkdir user_logs
+mkdir event_logs
+cd ..
+cd raw/
+cp user*.log ~/dsi/shell/02_activities/assignments/data/processed/user_logs
+cp event*.log ~/dsi/shell/02_activities/assignments/data/processed/event_logs
 # 7. For user privacy, remove all files containing IP addresses (files with "ipaddr" in the filename) from ./data/raw and ./data/processed/user_logs
-rm data/raw/*ipaddr*
-rm data/processed/user_logs/*ipaddr*
+<<<<<<< HEAD
+rf -rf ./data
+
+=======
+rm *ipaddr*
+cd ..
+cd processed/
+cd user_logs/
+rm *ipaddr*
+>>>>>>> 78ed6394cd21a494f161178c2dbac78248e0bcb2
 # 8. Create a file named ./data/inventory.txt that lists all the files in the subfolders of ./data/processed
-find data/processed -type f > data/inventory.txt
+find ~/dsi/shell/02_activities/assignments/data/processed -type f > ~/dsi/shell/02_activities/assignments/data/inventory.txt
 
 ###########################################
 echo "Project setup is complete!"
